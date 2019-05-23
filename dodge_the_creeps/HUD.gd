@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal start_game
+var paused = false
 
 func show_message(text):
     $MessageLabel.text = text
@@ -8,6 +9,7 @@ func show_message(text):
     $MessageTimer.start()
 
 func show_game_over():
+    $PauseButton.hide()
     show_message("Game Over")
     yield($MessageTimer, "timeout")
     $MessageLabel.text = "Dodge the\nCreeps!"
@@ -29,5 +31,7 @@ func _on_StartButton_pressed():
 func _on_PauseButton_toggled(button_pressed):
 	if button_pressed == true:
 		$PauseButton.text = "Play"
+		get_tree().paused = true
 	else: 
+		get_tree().paused = false
 		$PauseButton.text = "Pause"
