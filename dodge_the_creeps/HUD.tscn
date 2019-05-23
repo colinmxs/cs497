@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://dodge_assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
@@ -13,6 +13,10 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 64
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
 font_data = ExtResource( 2 )
 
 [node name="HUD" type="CanvasLayer"]
@@ -49,5 +53,21 @@ custom_fonts/font = SubResource( 3 )
 text = "Start"
 
 [node name="MessageTimer" type="Timer" parent="."]
+
+[node name="PauseButton" type="Button" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -140.0
+margin_top = -70.0
+margin_right = -24.0
+margin_bottom = -25.0
+custom_fonts/font = SubResource( 4 )
+toggle_mode = true
+text = "Pause"
+[connection signal="start_game" from="." to="." method="new_game"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]
+[connection signal="toggled" from="PauseButton" to="." method="_on_PauseButton_toggled"]

@@ -23,4 +23,11 @@ func _on_MessageTimer_timeout():
 
 func _on_StartButton_pressed():
     $StartButton.hide()
+    $PauseButton.show()
     emit_signal("start_game")
+
+func _on_PauseButton_toggled(button_pressed):
+	if button_pressed == true:
+		$PauseButton.text = "Play"
+	else: 
+		$PauseButton.text = "Pause"
