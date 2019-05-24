@@ -17,6 +17,15 @@ func show_game_over():
     yield(get_tree().create_timer(1), 'timeout')
     $StartButton.show()
 
+func show_game_won():
+    $PauseButton.hide()
+    show_message("You Won!")
+    yield($MessageTimer, "timeout")
+    $MessageLabel.text = "Dodge the\nCreeps!"
+    $MessageLabel.show()
+    yield(get_tree().create_timer(1), 'timeout')
+    $StartButton.show()
+
 func update_score(score):
     $ScoreLabel.text = str(score)
 
