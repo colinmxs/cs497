@@ -45,7 +45,7 @@ func _on_ScoreTimer_timeout():
     score += 1
     $HUD.update_score(score)
     $MobTimer.wait_time /= 1.1
-    if score == 3:
+    if score == 15:
         game_won()
 
 func game_won():
