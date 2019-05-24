@@ -45,11 +45,14 @@ func _on_ScoreTimer_timeout():
     score += 1
     $HUD.update_score(score)
     $MobTimer.wait_time /= 1.1
-    if score == 15:
+    if score == 3:
         game_won()
 
 func game_won():
+    $Player.hide()
+    $Player/CollisionShape2D.call_deferred("set_disabled", true)
     $ScoreTimer.stop()
+    $MobTimer.wait_time = 0.5
     $MobTimer.stop()
     $HUD.show_game_won()
 
